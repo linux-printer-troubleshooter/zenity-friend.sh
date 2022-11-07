@@ -4,7 +4,10 @@ what_is=$(printf "Convert format\nCut" | zenity --list --column=Name --height=33
 get() { zenity --scale --max-value=60 --text="$1";};
 
 
-if [[ $what_is == "Cut" ]];then starting_hour=$( get "starting hour" );
+if [[ $what_is == "Cut" ]];then 
+zenity --info --text="Please select the file.";
+file1=$(zenity --file-selection);file2=$(basename "$file1");
+starting_hour=$( get "starting hour" );
 starting_minutes=$( get "starting minutes" );starting_seconds=$( get "starting seconds" );
 ending_hour=$( get "ending hour" );ending_minutes=$( get "ending minutes" );ending_seconds=$( get "ending seconds" );
 start_time=$starting_hour":"$starting_minutes":"$starting_seconds
@@ -12,7 +15,6 @@ end_time=$ending_hour":"$ending_minutes":"$ending_seconds;
 
 random2=$(( RANDOM%999999999 ));
 echo $random2;
-file1=$(zenity --file-selection);file2=$(basename "$file1");
 echo "----->"$file1 ;
 format=${file2##*.};echo "$format";echo $start_time;echo $end_time;
 entry=$(zenity --entry --entry-text="cutted$random2$file2.$format" --text="output filename");
