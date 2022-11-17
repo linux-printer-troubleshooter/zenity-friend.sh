@@ -1,5 +1,6 @@
 what_is=$(printf "Convert format\nCut" | zenity --list --column=Name --height=330 --text=Please);
-
+#PENDING:need to populate formats.txt with something like ffmpeg -codecs
+#need to do if zenity fi to make sure program is exited if cancel is pressed
 
 get() { zenity --scale --max-value=60 --text="$1";};
 
